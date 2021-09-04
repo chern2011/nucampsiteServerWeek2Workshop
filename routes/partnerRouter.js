@@ -15,7 +15,7 @@ partnerRouter
             .catch((err) => next(err));
     })
     .post((req, res, next) => {
-        //to create a new Campstite document
+        //to create a new Campsite document
         Partner.create(req.body)
             .then((partner) => {
                 console.log("Partner Created ", partner);
