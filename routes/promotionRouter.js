@@ -124,7 +124,7 @@ promotionRouter
       `PUT operation not supported on /promotions/${req.params.promotionId}/comments`
     );
   })
-  .delete((req, res, next) => {
+  .delete((req, res, next) => { 
     Promotion.findById(req.params.promotionId)
       .then(promotion => {
         if (promotion) {
