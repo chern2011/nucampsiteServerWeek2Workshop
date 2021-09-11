@@ -26,7 +26,7 @@ partnerRouter
             })
             .catch((err) => next(err));
     })
-    .put(authenticate.verifyUser, authenticate.verifyAdmin,(req, res) => {
+    .put(authenticate.verifyUser, (req, res) => {
         res.statusCode = 403;
         res.end("PUT operation not supported on /partners");
     })
@@ -52,7 +52,7 @@ partnerRouter
             })
             .catch((err) => next(err));
     })
-    .post(authenticate.verifyUser, authenticate.verifyAdmin,(req, res) => {
+    .post(authenticate.verifyUser, (req, res) => {
         res.statusCode = 403;
         res.end(
             `POST operation not supported on /partners/${req.params.partnerId}`
