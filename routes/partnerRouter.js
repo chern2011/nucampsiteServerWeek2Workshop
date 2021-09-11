@@ -14,7 +14,7 @@ partnerRouter
             })
             .catch((err) => next(err));
     })
-    .post((req, res, next) => {
+    .post(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         //to create a new Campsite document
         Partner.create(req.body)
             .then((partner) => {
@@ -29,7 +29,7 @@ partnerRouter
         res.statusCode = 403;
         res.end("PUT operation not supported on /partners");
     })
-    .delete((req, res, next) => {
+    .delete(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         Partner.deleteMany()
             .then((response) => {
                 res.statusCode = 200;
@@ -57,7 +57,7 @@ partnerRouter
             `POST operation not supported on /partners/${req.params.partnerId}`
         );
     })
-    .put((req, res, next) => {
+    .put(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         Partner.findByIdAndUpdate(
             req.params.partnerId,
             {
@@ -72,7 +72,7 @@ partnerRouter
             })
             .catch((err) => next(err));
     })
-    .delete((req, res, next) => {
+    .delete(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         Partner.findByIdAndDelete(req.params.partnerId)
             .then((response) => {
                 res.statusCode = 200;
@@ -132,7 +132,7 @@ partnerRouter
             `PUT operation not supported on /partners/${req.params.partnerId}/comments`
         );
     })
-    .delete((req, res, next) => {
+    .delete(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
         Partner.findById(req.params.partnerId)
             .then((partner) => {
                 if (partner) {
